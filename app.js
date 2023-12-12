@@ -5,9 +5,17 @@ const encryptor = require('./encryptor');
 const resultCalculator = require('./result_calculator');
 const moves = process.argv.slice(2);
 
-if (moves.length < 3 || moves.length % 2 === 0) {
-    console.log('Number of arguments should be odd and equal or more than 3');
+moves.filter((move, index) => {
+  let duplicateItems = moves.indexOf(move) != index;
+  if (duplicateItems) {
+    console.log("No duplicates accepted!");
     process.exit(1);
+  }
+});
+
+if (moves.length === 0 || moves.length < 3 || moves.length % 2 === 0) {
+  console.log("Incorrect parameters!");
+  process.exit(1);
 }
 
 while (true) {
